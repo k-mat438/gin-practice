@@ -39,6 +39,7 @@ func main() {
 	itemController := controllers.NewItemController(itemService)
 	router.GET("/items", itemController.FindAll)
 	router.GET("/items/:id", itemController.FindById)
+	router.POST("/items", itemController.Create)
 
 	router.Run("localhost:8080") // 0.0.0.0:8080 でサーバーを立てます。
 }
