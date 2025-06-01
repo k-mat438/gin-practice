@@ -3,6 +3,7 @@ package main
 // ginフレームワークをインポートします。
 import (
 	"gin-fleamarket/controllers"
+	"gin-fleamarket/infra"
 	"gin-fleamarket/models"
 	"gin-fleamarket/repositories"
 	"gin-fleamarket/services"
@@ -11,6 +12,7 @@ import (
 )
 
 func main() {
+	infra.Initialize()
 	// ginのデフォルトのルーターを作成します。
 	// ルーターは、HTTPリクエストを処理するためのエンドポイントを定義します。
 	router := gin.Default()
