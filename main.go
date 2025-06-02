@@ -4,7 +4,6 @@ package main
 import (
 	"gin-fleamarket/controllers"
 	"gin-fleamarket/infra"
-	"gin-fleamarket/models"
 	"gin-fleamarket/repositories"
 	"gin-fleamarket/services"
 
@@ -29,14 +28,18 @@ func main() {
 		})
 	})
 
-	items := []models.Item{
-		{ID: 1, Name: "Item1", Price: 1000, Description: "Description1", SoldOut: false},
-		{ID: 2, Name: "Item2", Price: 2000, Description: "Description2", SoldOut: true},
-		{ID: 3, Name: "Item3", Price: 3000, Description: "Description3", SoldOut: false},
-		{ID: 4, Name: "Item4", Price: 4000, Description: "Description4", SoldOut: true},
-	}
+	infra.Initialize()
+	db := infra.SetupDB()
+	// items := []models.Item{
+	// 	{ID: 1, Name: "Item1", Price: 1000, Description: "Description1", SoldOut: false},
+	// 	{ID: 2, Name: "Item2", Price: 2000, Description: "Description2", SoldOut: true},
+	// 	{ID: 3, Name: "Item3", Price: 3000, Description: "Description3", SoldOut: false},
+	// 	{ID: 4, Name: "Item4", Price: 4000, Description: "Description4", SoldOut: true},
+	// }
 
-	itemRepository := repositories.NewItemMemoryRepository(items)
+	// itemRepository := repositories.NewItemMemoryRepository(items)
+	itemRepository := repositories.NewItemRepository(db)
+
 	itemService := services.NewItemService(itemRepository)
 	itemController := controllers.NewItemController(itemService)
 	router.GET("/items", itemController.FindAll)
