@@ -100,13 +100,17 @@ func (r *ItemRepository) Create(newItem models.Item) (*models.Item, error) {
 	return &newItem, nil
 }
 
-// Delete implements IItemRepository.
-func (i *ItemRepository) Delete(itemId uint) error {
-	panic("unimplemented")
+// Update implements IItemRepository.
+func (r *ItemRepository) Update(updateItem models.Item) (*models.Item, error) {
+	result := r.db.Save(&updateItem)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+	return &updateItem, nil
 }
 
-// Update implements IItemRepository.
-func (i *ItemRepository) Update(updateItem models.Item) (*models.Item, error) {
+// Delete implements IItemRepository.
+func (i *ItemRepository) Delete(itemId uint) error {
 	panic("unimplemented")
 }
 
