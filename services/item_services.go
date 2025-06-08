@@ -54,6 +54,9 @@ func (s *ItemService) Update(itemId uint, updateItemInput dto.UpdateItemInput) (
 	if updateItemInput.Description != nil {
 		targetItem.Description = *updateItemInput.Description
 	}
+	if updateItemInput.SoldOut != nil {
+		targetItem.SoldOut = *updateItemInput.SoldOut
+	}
 	return s.repository.Update(*targetItem)
 }
 

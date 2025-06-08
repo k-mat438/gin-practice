@@ -7,8 +7,8 @@ type CreateItemInput struct {
 }
 
 type UpdateItemInput struct {
-	Name        *string `json:"name" binding:"omitnill,min=2"`
-	Price       *uint   `json:"price" binding:"omitenill,min=1,max=999999"`
+	Name        *string `json:"name" binding:"omitempty,min=2"`
+	Price       *uint   `json:"price" binding:"omitempty,min=1,max=999999"`
 	Description *string `json:"description"`
 	SoldOut     *bool   `json:"soldOut"`
 }
