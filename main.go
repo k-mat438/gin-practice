@@ -38,6 +38,7 @@ func main() {
 	// }
 
 	// itemRepository := repositories.NewItemMemoryRepository(items)
+	// メモリからdbに変更
 	itemRepository := repositories.NewItemRepository(db)
 
 	itemService := services.NewItemService(itemRepository)
